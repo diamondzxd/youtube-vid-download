@@ -1,6 +1,5 @@
-from __future__ import unicode_literals
 import requests
-import youtube_dl
+from yt_dlp import YoutubeDL
 
 
 def downloadVideo(query):
@@ -23,11 +22,12 @@ def downloadVideo(query):
         print("Captions not found for this video..")
 
     # Downloading Video via youtube-dl
+    URL = 'https://www.youtube.com/watch?v=' + video_id
 
-    ydl_opts = {}
-    with youtube_dl.YoutubeDL(ydl_opts) as ydl:
-        ydl.download(['https://www.youtube.com/watch?v=' + video_id])
+    with YoutubeDL() as ydl:
+        ydl.download([URL])
 
+    return "Success"
     
 
-downloadVideo("5 levels of beethoven")
+downloadVideo("my heart will go on")
